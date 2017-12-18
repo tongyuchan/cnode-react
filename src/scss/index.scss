@@ -7,6 +7,9 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 }
+h3,p{
+  margin:0;
+}
 .detailContent{
   line-height:1.5em;
   font-size:14px;
@@ -40,6 +43,9 @@
           border-bottom:none;
         }
       }
+      &:nth-child(even){
+        background:#f8f8f8;
+      }
     }
     th{
       border-right:1px solid #ececed;
@@ -49,5 +55,14 @@
         border-right:none;
       }
     }
+  }
+  pre{
+    padding-left:16px;
+    background:#ececed;
+  }
+}
+.replyList{
+  p{
+    white-space:normal;
   }
 }
