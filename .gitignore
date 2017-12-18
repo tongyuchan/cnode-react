@@ -1,0 +1,12 @@
+*.iml
+.idea
+*.project
+.settings
+*.classpath
+# system ignore
+.DS_Store
+Thumbs.db
+
+META-INF
+node_modules
+dist/
