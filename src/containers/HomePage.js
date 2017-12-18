@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import {selectTab,fetchTopics} from '../actions';
 import {transforDate} from '../utils'
+import Loading from '../components/Common/Loading';
 
 class HomePage extends Component{
     constructor(props){
@@ -99,15 +100,7 @@ class HomePage extends Component{
                             const data=topics[name]?topics[name]:topics.all;
                             return (
                                 <div key={index}>
-                                    <div style={{textAlign:'center',width:'100%',paddingTop:160,display:data.isFetching?'':'none'}}>
-                                        <div style={{display:'inline-block'}}>
-                                            <ActivityIndicator
-                                                animating={true}
-                                                size='large'
-                                                text="loading..."
-                                            />
-                                        </div>
-                                    </div>
+                                    <Loading show={data.isFetching}/>
                                     <ListView
                                         ref={ele=>this[name]=ele}
                                         dataSource={data.data}

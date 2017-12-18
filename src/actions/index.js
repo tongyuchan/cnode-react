@@ -32,3 +32,19 @@ export const fetchTopics=(tab='all',pageNum=1,pageSize=10,isRefresh)=>(dispatch)
 };
 
 //Detail
+export const REQUEST_DETAIL='QEQUEST_DETAIL';
+export const RECEIVE_DETAIL='QECEIVE_DETAIL';
+const requestDetail=()=>({
+    type:REQUEST_DETAIL
+});
+const receiveDetail=(data,success)=>({
+    type:RECEIVE_DETAIL,
+    data,
+    success
+});
+export const fetchDetail=(id)=>(dispatch)=>{
+   dispatch(requestDetail());
+   fetch(`/api/v1/topic/${id}`)
+   .then(response=>response.json())
+   .then(json=>dispatch(receiveDetail(json.data,json.success)))
+};

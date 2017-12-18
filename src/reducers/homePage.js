@@ -30,6 +30,7 @@ const getTopicsItem=(item,action)=>{
     item={};
     item.data=dataSource();
     item.dataSource=[];
+    item.success=true;
   }
   switch (action.type){
     case REQUEST_TOPICS:
