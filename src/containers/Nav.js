@@ -43,10 +43,10 @@ class Nav extends Component{
                         title=""
                         key="create"
                         icon={
-                            <div className="iconfont icon-fabu"></div>
+                            <div className="iconfont icon-fabu" style={{fontSize:24}}></div>
                         }
                         selectedIcon={
-                            <div className="iconfont icon-fabu"></div>
+                            <div className="iconfont icon-fabu" style={{fontSize:24}}></div>
                         }
                         selected={this.state.selectedTab=='create'}
                         onPress={

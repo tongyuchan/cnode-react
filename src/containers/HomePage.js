@@ -1,6 +1,7 @@
 import React ,{ Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Tabs , ActivityIndicator , ListView , List , PullToRefresh } from 'antd-mobile';
+import { Tabs , ActivityIndicator , ListView , List , PullToRefresh , Toast } from 'antd-mobile';
+import { Link } from 'react-router-dom';
 
 import {selectTab,fetchTopics} from '../actions';
 import {transforDate} from '../utils'
@@ -63,7 +64,11 @@ class HomePage extends Component{
         });
     }
     componentWillReceiveProps(nextProps){
-
+        const {topics,selectedTab}=nextProps;
+        const tab=selectedTab.name;
+        if(!topics[tab].success){
+            Toast.fail('失败，请重试')
+        }
     }
     render(){
         const {height}=this.state;
@@ -112,7 +117,7 @@ class HomePage extends Component{
                                         pageSize={10}
                                         renderRow={(rowData, sectionID, rowID, highlightRow)=>{
                                             const itemData=rowData[rowID];
-                                            return (<div key={rowID} style={{boxShadow:'rgba(0, 0, 0, 0.12) 0px 1px 5px',position:'relative'}}>
+                                            return (<Link key={rowID} to={`/topic/${itemData.id}`} style={{boxShadow:'rgba(0, 0, 0, 0.12) 0px 1px 5px',position:'relative'}}>
                                                 <div style={{padding:'8px 15px',width:'100%'}}>
                                                     <img src={itemData.author.avatar_url} alt=''
                                                         style={{width:50,height:50,borderRadius:'50%',float:'left'}}/>
@@ -128,7 +133,7 @@ class HomePage extends Component{
                                                     <div style={{flex:1}}><span className="iconfont icon-pinglun"></span>{itemData.reply_count}</div>
                                                     <div style={{flex:1}}><span className="iconfont icon-dianzan"></span></div>
                                                 </div>
-                                            </div>)
+                                            </Link>)
                                             }}
                                         renderSeparator={(sectionID,rowID)=>(<div key={`s-${rowID}`} style={{
                                             backgroundColor:'#f5f5f9',

@@ -44,6 +44,7 @@ const getTopicsItem=(item,action)=>{
         isFetching:false,
         isFetchingMore:false,
         data:item.data.cloneWithRows([...item.dataSource,...action.data]),
+        success:action.success,
         dataSource:[...item.dataSource,...action.data],
         pageNum:action.pageNum,
         pageSize:action.pageSize
@@ -66,7 +67,7 @@ const getTopics=(topics,action)=>{
   }
 };
 
-const homePage=(state={selectedTab:{name:'all',index:0},topics:{all:{data:dataSource(),dataSource:[]}}},action)=>{
+const homePage=(state={selectedTab:{name:'all',index:0},topics:{all:{data:dataSource(),dataSource:[],success:true}}},action)=>{
   const sTab=selectTab(state.selectedTab,action);
   const topics=getTopics(state.topics,action);
   return {...state,selectedTab:sTab,topics:topics}

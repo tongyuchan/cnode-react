@@ -16,10 +16,11 @@ const requestTopics=(tab,pageNum,isRefresh)=>({
     pageNum,
     isRefresh
 });
-const receiveTopics=(tab,data,pageNum,pageSize)=>({
+const receiveTopics=(tab,data,success,pageNum,pageSize)=>({
     type:RECEIVE_TOPICS,
     tab,
     data,
+    success,
     pageNum,
     pageSize
 });
@@ -27,5 +28,7 @@ export const fetchTopics=(tab='all',pageNum=1,pageSize=10,isRefresh)=>(dispatch)
     dispatch(requestTopics(tab,pageNum,isRefresh));
     fetch(`/api/v1/topics?tab=${tab}&page=${pageNum}&limit=${pageSize}`)
     .then(response=>response.json())
-    .then(json=>dispatch(receiveTopics(tab,json.data,pageNum,pageSize)))
+    .then(json=>dispatch(receiveTopics(tab,json.data,json.success,pageNum,pageSize)))
 };
+
+//Detail
