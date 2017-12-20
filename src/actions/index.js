@@ -76,3 +76,8 @@ export const fetchLogin=(accesstoken,isRemberAt)=>(dispatch)=>{
     }).then(response=>response.json())
     .then(json=>dispatch(receiveLogin(accesstoken,isRemberAt,json.loginname,json.id,json.avatar_url,json.success,json.error_msg)))
 };
+export const INIT_LOGIN='INIT_LOGIN';
+export const initLogin=(login)=>({
+    type:INIT_LOGIN,
+    login
+});

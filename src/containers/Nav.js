@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import HomePage from './HomePage';
 import Login from './Login';
+import { initLogin } from '../actions';
 
 class Nav extends Component{
     constructor(props){
@@ -56,7 +57,7 @@ class Nav extends Component{
                         onPress={
                             ()=>{
                                 this.setState({selectedTab:'create'});
-                                if(!login.success){
+                                if(!login.accesstoken){
                                     history.push('/login')
                                 }
                             }

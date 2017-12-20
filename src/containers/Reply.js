@@ -3,7 +3,9 @@ import { List ,TextareaItem , Button } from 'antd-mobile';
 
 class Reply extends Component{
     render(){
-        const {replies}=this.props;
+        const {replies,accesstoken}=this.props;
+        console.log(this.props)
+        let canNotReply=accesstoken?false:true;
         return (<div className="replyList" style={{paddingBottom:30}}>
             <h3 style={{background:'#ecf6fd',height:30,lineHeight:'30px',fontSize:16,paddingLeft:'10px'}}>评论（{replies.length}）</h3>
             <List>
@@ -31,11 +33,11 @@ class Reply extends Component{
             </List>
             <TextareaItem
                 placeholder="请先登录"
-                disabled={true}
+                style={{border:'1px solid #ececed',width:'80%',display:'block',margin:'0 auto',padding:8}}
+                disabled={canNotReply}
                 clear={true}
                 rows={6}
                 onBlur={()=>{}}
-                style={{border:'1px solid #ececed',width:'80%',display:'block',margin:'0 auto',padding:8}}
             />
             <Button
                 type="primary"
@@ -45,7 +47,7 @@ class Reply extends Component{
                     width:'80%',
                     margin:'0 auto'
                 }}
-                disabled={true}
+                disabled={canNotReply}
             >回复</Button>
         </div>)
     }

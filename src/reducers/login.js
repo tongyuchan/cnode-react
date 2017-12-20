@@ -1,6 +1,7 @@
 import {
     REQUEST_LOGIN,
-    RECEIVE_LOGIN
+    RECEIVE_LOGIN,
+    INIT_LOGIN
 }   from '../actions';
 
 const login=(state={
@@ -24,6 +25,11 @@ const login=(state={
                 avatar_url:action.avatar_url,
                 success:action.success,
                 error_msg:action.error_msg
+            }
+        case INIT_LOGIN:
+            return {
+                ...state,
+                ...action.login
             }
         default:
             return state;

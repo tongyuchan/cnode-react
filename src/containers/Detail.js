@@ -6,7 +6,7 @@ import Head from '../components/Common/Head';
 import Loading from '../components/Common/Loading';
 import { fetchDetail } from '../actions';
 import {transforDate} from '../utils'
-import Reply from '../components/Detail/Reply';
+import Reply from './Reply';
 
 class Detail extends Component{
     constructor(props){
@@ -23,7 +23,7 @@ class Detail extends Component{
         }
     }
     render(){
-        const {history,detail}=this.props;
+        const {history,detail,accesstoken}=this.props;
         const itemData=detail.data;
         return (<div>
             <Head title="详情" history={history}/>
@@ -48,7 +48,7 @@ class Detail extends Component{
                                 <h1 style={{textAlign:'center',fontSize:16,paddingBottom:8,lineHeight:'1.5em'}}>{itemData.title}</h1>
                                 <div dangerouslySetInnerHTML={{__html:itemData.content}} className="detailContent"></div>
                             </div>
-                            <Reply replies={itemData.replies} />
+                            <Reply replies={itemData.replies} accesstoken={accesstoken}/>
                         </div>
                         :''
                 }
@@ -58,9 +58,11 @@ class Detail extends Component{
 }
 
 function mapStateToProps(state,ownerProps){
-    const {detail}=state;
+    const {detail,login}=state;
+    const {accesstoken}=login;
     return {
-        detail
+        detail,
+        accesstoken
     }
 }
 

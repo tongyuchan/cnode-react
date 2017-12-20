@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { List , Button, InputItem ,Switch ,Checkbox } from 'antd-mobile';
 
 import Head from '../components/Common/Head';
-import { fetchLogin } from '../actions'
+import { fetchLogin ,initLogin } from '../actions'
 
 class Login extends Component{
     constructor(props){
@@ -28,7 +28,8 @@ class Login extends Component{
         dispatch(fetchLogin(accesstoken,isRemberAt));
     }
     componentWillReceiveProps(nextProps){
-        const {success,error_msg,history,isRemberAt}=nextProps;
+        const {history,login}=nextProps;
+        const {success,error_msg,isRemberAt}=login;
         if(typeof success=='boolean' && !success){
             this.setState({
                 error:true,
@@ -42,9 +43,17 @@ class Login extends Component{
             history.push('/');
         }
         if(isRemberAt){
-            localStorage.setItem('user',JSON.stringify({nextProps}));
+            localStorage.setItem('user',JSON.stringify(nextProps.login));
         }else{
             localStorage.removeItem('user');
+        }
+    }
+    componentDidMount(){
+        const {dispatch}=this.props;
+        const login=JSON.parse(localStorage.getItem('user'));
+        console.log(login)
+        if(login.isRemberAt){
+            dispatch(initLogin({accesstoken:login.accesstoken,loginname:login.loginname,avatar_url:login.avatar_url,id:login.id}))
         }
     }
     render(){
@@ -96,7 +105,7 @@ class Login extends Component{
 
 function mapStateToProps(state){
     const {login}=state;
-    return {...login}
+    return {login}
 }
 
 export default connect(mapStateToProps)(Login);
