@@ -115,7 +115,10 @@ class HomePage extends Component{
                                                     <img src={itemData.author.avatar_url} alt=''
                                                         style={{width:50,height:50,borderRadius:'50%',float:'left'}}/>
                                                     <div style={{paddingLeft:58}}>
-                                                        <div style={{padding:'8px 0',fontWeight:'bold'}}>{itemData.author.loginname}
+                                                        <div style={{padding:'8px 0',fontWeight:'bold'}}>
+                                                            {itemData.top?<span style={{color:"blue",padding:'0 4px'}}>顶</span>:''}
+                                                            {itemData.good?<span style={{color:"red",padding:'0 4px'}}>精</span>:''}
+                                                            {itemData.author.loginname}
                                                             <span style={{float:'right',fontSize:12,fontWeight:'normal',color:'rgba(0, 0, 0, 0.45)'}}>{transforDate(itemData.create_at)}</span>
                                                         </div>
                                                         <div className="ellipsis" style={{fontSize:12,color:'rgba(0, 0, 0, 0.85)',marginBottom:6}}>{itemData.title}</div>

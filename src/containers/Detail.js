@@ -48,7 +48,7 @@ class Detail extends Component{
                                 <h1 style={{textAlign:'center',fontSize:16,paddingBottom:8,lineHeight:'1.5em'}}>{itemData.title}</h1>
                                 <div dangerouslySetInnerHTML={{__html:itemData.content}} className="detailContent"></div>
                             </div>
-                            <Reply replies={itemData.replies}/>
+                            <Reply replies={itemData.replies} />
                         </div>
                         :''
                 }
