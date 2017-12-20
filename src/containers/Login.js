@@ -36,9 +36,11 @@ class Login extends Component{
             });
             return false
         }
-        history.push(document.referrer);
+        if(document.referrer){
+            history.push(document.referrer);
+        }
         if(isRemberAt){
-            localStorage.setItem('user',JSON.stringify({'accesstoken',nextProps}));
+            localStorage.setItem('user',JSON.stringify({nextProps}));
         }else{
             localStorage.removeItem('user');
         }
