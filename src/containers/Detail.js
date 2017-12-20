@@ -1,5 +1,6 @@
 import React ,{ Component } from 'react';
 import { connect } from 'react-redux';
+import { Toast } from 'antd-mobile';
 
 import Head from '../components/Common/Head';
 import Loading from '../components/Common/Loading';
@@ -15,9 +16,14 @@ class Detail extends Component{
         const {dispatch,match} =this.props;
         dispatch(fetchDetail(match.params.id))
     }
+    componentWillReceiveProps(nextProps){
+        const {detail}=nextProps;
+        if(!detail.success){
+            Toast.fail('失败，请重试');
+        }
+    }
     render(){
         const {history,detail}=this.props;
-        console.log(this.props)
         const itemData=detail.data;
         return (<div>
             <Head title="详情" history={history}/>

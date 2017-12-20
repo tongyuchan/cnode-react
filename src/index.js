@@ -7,7 +7,8 @@ import { HashRouter , Route } from 'react-router-dom';
 import './scss/index.scss';
 import store from './store';
 import Nav from './containers/Nav';
-import Detail from './containers/Detail'
+import Detail from './containers/Detail';
+import Login from './containers/Login';
 
 render(
     <Provider store={store}>
@@ -15,6 +16,7 @@ render(
             <div>
                 <Route path="/" exact component={Nav}/>
                 <Route path="/topic/:id" component={Detail}/>
+                <Route path="/login" component={Login}/>
             </div>
         </HashRouter>
     </Provider>,

@@ -3,6 +3,7 @@ import { TabBar } from 'antd-mobile';
 import { connect } from 'react-redux';
 
 import HomePage from './HomePage';
+import Login from './Login';
 
 class Nav extends Component{
     constructor(props){
@@ -16,8 +17,11 @@ class Nav extends Component{
         const {
                 selectedTab,
                 topics,
-                dispatch
+                dispatch,
+                login,
+                history
             }=this.props;
+        console.log(this.props)
         return (
             <div style={{position:'fixed',top:0,width:'100%',height:'100%'}}>
                 <TabBar tintColor="rgb(0, 188, 212)">
@@ -51,7 +55,10 @@ class Nav extends Component{
                         selected={this.state.selectedTab=='create'}
                         onPress={
                             ()=>{
-                                this.setState({selectedTab:'create'})
+                                this.setState({selectedTab:'create'});
+                                if(!login.success){
+                                    history.push('/login')
+                                }
                             }
                         }
                     >
@@ -83,7 +90,8 @@ class Nav extends Component{
 
 function mapStateToProps(state,ownerProps){
     const {
-        homePage
+        homePage,
+        login
     }=state;
     const {
         selectedTab,
@@ -91,7 +99,8 @@ function mapStateToProps(state,ownerProps){
     }=homePage;
     return {
         selectedTab,
-        topics
+        topics,
+        login
     }
 }
 

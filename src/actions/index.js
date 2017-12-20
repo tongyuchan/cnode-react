@@ -48,3 +48,31 @@ export const fetchDetail=(id)=>(dispatch)=>{
    .then(response=>response.json())
    .then(json=>dispatch(receiveDetail(json.data,json.success)))
 };
+
+//Login
+export const REQUEST_LOGIN='REQUEST_LOGIN';
+export const RECEIVE_LOGIN='RECEIVE_LOGIN';
+const requestLogin=()=>({
+    type:REQUEST_LOGIN
+});
+const receiveLogin=(accesstoken,isRemberAt,loginname,id,avatar_url,success,error_msg)=>({
+    type:RECEIVE_LOGIN,
+    accesstoken,
+    isRemberAt,
+    loginname,
+    id,
+    avatar_url,
+    success,
+    error_msg
+});
+export const fetchLogin=(accesstoken,isRemberAt)=>(dispatch)=>{
+  dispatch(requestLogin());
+    fetch(`/api/v1/accesstoken`,{
+        method:'POST',
+        headers:{
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body:`accesstoken=${accesstoken}`
+    }).then(response=>response.json())
+    .then(json=>dispatch(receiveLogin(accesstoken,isRemberAt,json.loginname,json.id,json.avatar_url,json.success,json.error_msg)))
+};
