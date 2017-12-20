@@ -9,7 +9,7 @@ class Login extends Component{
     constructor(props){
         super(props);
         this.state={
-            accesstoken:props.accesstoken || '123',
+            accesstoken:props.accesstoken || '',
             isRemberAt:props.isRemberAt,
             error:false,
             error_msg:''
@@ -38,6 +38,8 @@ class Login extends Component{
         }
         if(document.referrer){
             history.push(document.referrer);
+        }else{
+            history.push('/');
         }
         if(isRemberAt){
             localStorage.setItem('user',JSON.stringify({nextProps}));
