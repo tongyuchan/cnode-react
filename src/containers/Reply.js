@@ -2,6 +2,13 @@ import React ,{ Component } from 'react';
 import { List ,TextareaItem , Button } from 'antd-mobile';
 
 class Reply extends Component{
+    constructor(props){
+        super(props);
+
+    }
+    reply=()=>{
+
+    }
     render(){
         const {replies,accesstoken}=this.props;
         console.log(this.props)
@@ -32,7 +39,7 @@ class Reply extends Component{
                 }
             </List>
             <TextareaItem
-                placeholder="请先登录"
+                placeholder={canNotReply?'请先登录':'请输入评论内容'}
                 style={{border:'1px solid #ececed',width:'80%',display:'block',margin:'0 auto',padding:8}}
                 disabled={canNotReply}
                 clear={true}
@@ -48,7 +55,7 @@ class Reply extends Component{
                     margin:'0 auto'
                 }}
                 disabled={canNotReply}
-            >回复</Button>
+            >评论</Button>
         </div>)
     }
 }
